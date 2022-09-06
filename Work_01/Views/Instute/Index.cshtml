@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Work_01.Models.ViewModel.InstituteVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row">
+    <div class="col">
+        <h2>Instute Details</h2>
+       
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-primary btn-sm mb-2" href="@Url.Action("Create","Instute")"><i class="fa fa-plus"></i></a>
+        </div>
+        <table class="table table-bordered table-striped table-hover table-sm">
+            <thead class="table-light">
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.InstituteId)</th>
+                    <th>@Html.DisplayNameFor(x => x.InstituteName)</th>
+                    <th>@Html.DisplayNameFor(x => x.Cost)</th>
+
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(x => c.InstituteId)</td>
+                        <td>@Html.DisplayFor(x => c.InstituteName)</td>
+                        <td>@Html.DisplayFor(x => c.Cost)</td>
+
+
+
+
+                        <td>
+                            <a class="btn btn-info btn-sm" href="@Url.Action("Edit", "Instute", new { id = c.InstituteId })"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-danger btn-sm" href="@Url.Action("Delete","Instute",new { id=c.InstituteId})"><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+       
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+﻿@model Work_01.Models.ViewModel.InstituteVM
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<div class="row">
+    <div class="col">
+        @using (Html.BeginForm("Edit", "Instute", FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.InstituteId)
+
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.InstituteName, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.InstituteName, new { @class = "form-control form-control-sm r" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.InstituteName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Cost, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.Cost, new { @class = "form-control form-control-sm r" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.Cost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-10 offset-2">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                </div>
+            </div>
+        }
+    </div>
+    <div>
+        <a class="btn btn-link" href="@Url.Action("Index","Instute")">Back to the list</a>
+    </div>
+</div>
+

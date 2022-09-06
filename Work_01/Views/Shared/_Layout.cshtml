@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@Page.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <style type="text/css">
+        body {
+            font-family: 'Century Gothic';
+            font-size: .90em;
+            padding-top: 70px;
+        }
+    </style>
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-md bg-info border-bottom fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Student Manegment System</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navBar" aria-controls="navBar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navBar">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Student", "Index", "Student", new { }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("InsTitute", "Index", "Instute", new { }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Departments", "Index", "Departments", new { }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Report", "Index", "Report", new { }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav ms-auto">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("Hello, " + User.Identity.Name + " !", "Index", "", new { @class = "nav-link" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Logout", "Logout", "Account", new { }, new { @class = "nav-link" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="active">
+                            @Html.ActionLink("Register", "Register", "Account", new { }, new { @class = "nav-link" })
+                        </li>
+                        <li class="active">
+                            @Html.ActionLink("Login", "LOgin", "Account", new { }, new { @class = "nav-link" })
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container pb-3">
+        @RenderBody()
+    </div>
+    <footer>
+        <p class="text-center">&copy; @DateTime.Now.Year - www.isdb-bisew.org</p>
+    </footer>
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/bootstrap.js"></script>
+</body>
+</html>

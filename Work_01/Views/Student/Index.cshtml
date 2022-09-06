@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Work_01.Models.Student>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col">
+        <h2>Student List</h2>
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-primary btn-sm mb-2" href="@Url.Action("Create","Student")">Add New</a>
+        </div>
+        <table class="table table-bordered table-striped table-hover table-sm">
+            <thead class="table-light">
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.StudentId)</th>
+                    <th>@Html.DisplayNameFor(x => x.Roll)</th>
+                    <th>@Html.DisplayNameFor(x => x.StudentName)</th>
+                    <th>@Html.DisplayNameFor(x => x.StudentDob)</th>
+                    <th>@Html.DisplayNameFor(x => x.phone)</th>
+                    <th>@Html.DisplayNameFor(x => x.Department.DeptName)</th>
+                    <th>@Html.DisplayNameFor(x => x.Institute.InstituteName)</th>
+                    <th>@Html.DisplayNameFor(x => x.email)</th>
+                    <th>@Html.DisplayNameFor(x => x.Picture)</th>
+                    <th>@Html.DisplayNameFor(x => x.isActive)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                <tr>
+                    <td>@s.StudentId</td>
+                    <td>@s.Roll</td>
+                    <td>@s.StudentName</td>
+                    <td>@s.StudentDob</td>
+                    <td>@s.phone</td>
+                    <td>@s.Department.DeptName</td>
+                    <td>@s.Institute.InstituteName</td>
+                    <td>@s.email</td>
+                    <td>
+                        <img src="@Url.Content(s.Picture)" width="40" height="30" />
+                    </td>
+                    <td>@s.isActive</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit","Student",new { id=s.StudentId})">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete","Student",new { id=s.StudentId})">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

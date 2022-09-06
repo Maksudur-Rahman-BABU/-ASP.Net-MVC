@@ -1,0 +1,124 @@
+﻿@model Work_01.Models.ViewModel.StudentVM
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row">
+    <div class="col">
+        @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "msg", OnComplete = "clearAll" }))
+        {
+            @Html.AntiForgeryToken()
+            <h2 class="mb-3">Add New Student</h2>
+
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Roll, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.Roll, new { @class = "form-control form-control-sm r", @type = "number" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.Roll, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.StudentName, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.StudentName, new { @class = "form-control form-control-sm r" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.StudentName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.StudentDob, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.StudentDob, new { @class = "form-control form-control-sm r", @type = "date" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.StudentDob, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.phone, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.phone, new { @class = "form-control form-control-sm r" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.DepartmentId, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.DropDownListFor(x => x.DepartmentId, ViewBag.departments as SelectList, "---Select---", new { @class = "form-control form-control-sm r" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.DepartmentId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.InstituteId, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.DropDownListFor(x => x.InstituteId, ViewBag.institutes as SelectList, "---Select---", new { @class = "form-control form-control-sm r" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.InstituteId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.email, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.email, new { @class = "form-control form-control-sm r" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Pictures, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.Pictures, new { @class = "form-control form-control-sm r", @type = "file" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.Pictures, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.isActive, new { @class = "col-form-label col-form-label-sm col-2 r" })
+                <div class="col-6">
+                    @Html.CheckBoxFor(x => x.isActive)
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.isActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-10 offset-2">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div id="msg">
+
+                </div>
+            </div>
+        }
+    </div>
+    <div>
+        <a class="btn btn-link" href="@Url.Action("Index","Student")">Back to the list</a>
+    </div>
+</div>
+@section scripts {
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        $("#form0").attr("enctype", "multipart/form-data");
+        function clearAll()
+        {
+            $("#form0").trigger("reset");
+        }
+    </script>
+}
